@@ -1,0 +1,39 @@
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    {% block embeds %}
+    <meta property="og:image" content="{% static 'logo.png' %}">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    {% endblock embeds %}
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.ico' %}">
+    {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static '/styles/styles.scss' %}">
+    {% endcompress %}
+    <script src="{% static '/scripts/particles.min.js' %}"></script>
+    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
+    <script type="text/hyperscript">
+        init
+            particlesJS.load('particles-js', '/static/scripts/particles.json')
+        end
+        on htmx:historyRestore
+            particlesJS.load('particles-js', '/static/scripts/particles.json')
+        end
+    </script>
+</head>
+<body id="particles-js" hx-swap="outerHTML swap:500ms" hx-target="#content" hx-select="#content" hx-push-url="true" hx-boost="true">
+    {% include 'navigation.html' %}
+    <div id="content">
+        <header>{% block header %}{% endblock header %}</header>
+        <main>{% block content %}{% endblock content %}</main>
+    </div>
+</body>
+</html>

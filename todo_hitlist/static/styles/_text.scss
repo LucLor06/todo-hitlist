@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url(fonts/Roboto.ttf);
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url(fonts/Montserrat.ttf);
+}
+
+h1, h2, h3, h4, h5, p, a, li, sub, input, button, label {
+    text-align: center;
+    color: $color-text;
+    margin: .5rem;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Roboto';
+}
+
+h1 {
+    font-size: $font-size-lg;
+}
+
+h2 {
+    font-size: $font-size-md;
+}
+
+p, a, li, sub, input, button, label {
+    text-align: left;
+    font-family: 'Montserrat';
+}
+
+p {
+    font-size: $font-size-sm;
+
+    a {
+        margin: 0;
+    }
+
+    & + p {
+        margin-top: 1rem;
+    }
+}
+
+a {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.text--secondary {
+    font-size: $font-size-sm;
+    margin: 1rem;
+    opacity: 0.5;
+}
+
+.text--center {
+    text-align: center;
+}
+
+.text--xl {
+
+}
+
+.text--lg {
+    font-size: $font-size-lg;
+}
+
+.text--md {
+    font-size: $font-size-md;
+}
+
+.text--sm {
+    font-size: $font-size-sm;
+}
+
+.text--xs {
+
+}
+
+svg {
+    path {
+        opacity: 0.5;
+        fill: $color-text;
+        transition: opacity 500ms;
+    }
+
+    &:hover path {
+        opacity: 1;
+    }
+}
+
+.tooltip {
+    width: max-content;
+    margin: 5% auto;
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%);
+    font-size: $font-size-sm;
+    background-color: rgba(0, 0, 0, 0.9);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 250ms 0ms;
+    padding: .25rem .5rem;
+    border-radius: .5rem;
+}
+
+*:has(> .tooltip) { 
+    position: relative;
+    
+    &:hover > .tooltip, &:focus-visible > .tooltip {
+        opacity: 1;
+        transition: opacity 250ms 250ms;
+    }
+}
