@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{{ todo_app.technology }}</h1>
+<p class="text--secondary text--center">Created on {{ todo_app.date }}{% if todo_app.github_link %} | <a href="{{ todo_app.github_link }}">View on GitHub{% endif %}</a></p>
+{% endblock header %}
+
+{% block content %}
+{% include todo_app.template %}
+{% endblock content %}

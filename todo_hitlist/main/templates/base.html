@@ -17,15 +17,18 @@
     {% compress css %}
     <link rel="stylesheet" type="text/x-scss" href="{% static '/styles/styles.scss' %}">
     {% endcompress %}
-    <script src="{% static '/scripts/particles.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/vendor/highlight/night-owl.min.css' %}">
+    <script src="{% static '/vendor/highlight/highlight.min.js' %}"></script>
+    <script src="{% static '/vendor/particles/particles.min.js' %}"></script>
     <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
     <script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
     <script type="text/hyperscript">
         init
-            particlesJS.load('particles-js', '/static/scripts/particles.json')
+            particlesJS.load('particles-js', '/static/vendor/particles/particles.json')
+            hljs.highlightAll()
         end
         on htmx:historyRestore
-            particlesJS.load('particles-js', '/static/scripts/particles.json')
+            particlesJS.load('particles-js', '/static/vendor/particles.json')
         end
     </script>
 </head>
