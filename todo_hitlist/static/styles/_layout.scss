@@ -19,14 +19,24 @@ body {
     width: 100%;
 }
 
+body, #content {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 main {
-    width: clamp(320px, 60%, 1200px);
+    width: clamp(340px, 60%, 1200px);
     margin-inline: auto;
+}
+
+section {
+    margin-block: 2rem;
 }
 
 .particles-js-canvas-el {
     position: fixed;
     z-index: -1;
     top: 0;
+    left: 0;
     transition: filter 1s;
 }
