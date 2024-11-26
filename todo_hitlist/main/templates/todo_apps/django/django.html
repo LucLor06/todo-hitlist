@@ -1,0 +1,27 @@
+<section>
+    <p><b class="hljs-keyword">Django</b> is an awesome Python based backend framework with a batteries included style. Out of the box Django provides an ORM including migrations, a functional and secure auth, an admin panel, and many more features that make it a powerful tool for quickly building anything from small to enterprise scale applications.</p>
+    <p>Django follows a <span class="hljs-variable">MVT</span> (<b class="hljs-variable">M</b>odel <b class="hljs-variable">V</b>iew <b class="hljs-variable">T</b>emplate) architecture, where views are logic controllers that are mapped to url patterns. Views may query the data they need from database models then render and return templates as a response. Additionally, Django has a lively extension ecosystem that can further enhance the usability and effectiveness of Django.</p>
+    <p>Thanks to Django's ORM and architecture, creating a simple ToDo app is a breeze.</p>
+</section>
+<section>
+    <h2 class="hljs-variable">The Model</h2>
+    <pre><code class="language-python">{% include 'todo_apps/django/models.py' %}</code></pre>
+    <p>With this model, a <span class="hljs-title">Task</span> object connects with a user, keeps track of the date it was created, and stores its actual text content.</p>
+</section>
+<section>
+    <h2 class="hljs-variable">The Views</h2>
+    <pre><code class="language-python">{% include 'todo_apps/django/views.py' %}</code></pre>
+    <pre><code class="language-python">{% include 'todo_apps/django/urls.py' %}</code></pre>
+    <p>The <code class="hljs-title">TaskListView</code> will retrieve all Tasks and pass them to be rendered with the corresponding template. The <code class="hljs-title">get_queryset</code> method is overriden so that only the tasks affiliated with the currently logged in user are queried.</p>
+    <p>The <code class="hljs-title">TaskCreateView</code> will create a new task from a <code class="hljs-string">'task'</code> value in the request body. The <code class="hljs-title">form_valid</code> method is extended to add the currently logged in user to the new task before it is committed to the database. The view points back to the <code class="hljs-title">TaskListView</code> via the name defined in its url path so the page can be re-rendered to reflect the changes on successful task creation.</p>
+    <p>Lastly, the <code class="hljs-title">TaskDeleteView</code> will retrieve and delete a specified task. The <code class="hljs-title">get_queryset</code> method is overriden so that the view only works with tasks affiliated with the logged in user, preventing users from deleting other's tasks. Like the <code class="hljs-title">TaskCreateView</code>, the view points back to the <code class="hljs-title">TaskListView</code> so that the page can be re-rendered to reflect the successful task deletion.</p>
+</section>
+<section>  
+    <h2 class="hljs-variable">The Template</h2>
+    <pre><code class="language-django">{% filter force_escape %}{% include 'todo_apps/django/home.html' %}{% endfilter %}</code></pre>
+    <p>The template extends a base template containing foundational HTML that should be in every page (html, head, body, etc.). The top of the document includes a form that posts to the url that corresponds to the <code class="hljs-title">TaskCreateView</code> with a singular text input for the <code class="hljs-string">'task'</code>. Below the form is an unordered list containing each task with its text content along with a form that posts to the <code class="hljs-title">TaskDeleteView</code> url using the tasks primary key.</p>
+</section>
+<section>
+    <h2 class="hljs-variable">In Summary</h2>
+    <p>Django is a powerful framework, thanks to its MVT architecture and built in tools. Django's models, views, and templates are both simple but highly customizable, making them extremely effective for CRUD operations and beyond.</p>
+</section>

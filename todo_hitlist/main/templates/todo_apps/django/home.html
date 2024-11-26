@@ -1,0 +1,23 @@
+{% verbatim %}{% extends 'base.html' %}
+
+{% block title %}Tasks{% endblock title %}
+
+{% block content %}
+<h1>ToDo</h1>
+<form method="post" action="{% url 'tasks-create' %}">
+    {% csrf_token %}
+    <input type="text" name="task">
+    <input type="submit" value="Submit">
+</form>
+<ul>
+    {% for task in tasks %}
+    <li>
+        {{ task.task }}
+        <form method="post" action="{% url 'tasks-delete' task.pk %}">
+            {% csrf_token %}
+            <input type="submit" value="Remove">
+        </form>
+    </li>   
+    {% endfor %}
+</ul>
+{% endblock content %}{% endverbatim %}
